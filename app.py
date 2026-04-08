@@ -14,6 +14,7 @@ import numpy as np
 from io import BytesIO
 import urllib.parse
 import re
+import tempfile
 
 try:
     import imagehash
@@ -34,7 +35,7 @@ CORS(
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 
 # Configuration
-UPLOAD_FOLDER = Path('uploads')
+UPLOAD_FOLDER = Path(tempfile.gettempdir()) / 'uploads'
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
 # Electronics brands: keywords for text matching only. No price/authenticity claims.
