@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RealLens | Product Authenticity Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="bg-blur bg1"></div>
+    <div class="bg-blur bg2"></div>
+
+    <main class="container">
+      <header class="hero">
+        <p class="badge">AI + Computer Vision</p>
+        <h1>RealLens</h1>
+        <p>
+          Capture a photo and analyze
+        </p>
+      </header>
+
+      <div class="field card field-card">
+        <label for="productName">Device name</label>
+        <input
+          type="text"
+          id="productName"
+          name="productName"
+          autocomplete="off"
+          list="commonDevices"
+          placeholder="Type or pick a suggestion — Apple / Samsung examples below"
+          aria-describedby="productNameHint productNameError"
+        />
+        <datalist id="commonDevices">
+          <option value="iPhone 16 Pro"></option>
+          <option value="iPhone 16"></option>
+          <option value="iPhone 15 Pro Max"></option>
+          <option value="iPhone 15"></option>
+          <option value="iPhone 14"></option>
+          <option value="AirPods Pro 2"></option>
+          <option value="AirPods 4"></option>
+          <option value="Apple Watch Series 10"></option>
+          <option value="Apple Watch Ultra 2"></option>
+          <option value="iPad Pro M4"></option>
+          <option value="iPad Air"></option>
+          <option value="MacBook Pro 14"></option>
+          <option value="MacBook Air M3"></option>
+          <option value="Samsung Galaxy S24 Ultra"></option>
+          <option value="Samsung Galaxy S24"></option>
+          <option value="Samsung Galaxy Z Fold 6"></option>
+          <option value="Samsung Galaxy Z Flip 6"></option>
+          <option value="Samsung Galaxy Tab S9"></option>
+          <option value="Samsung Galaxy Buds3 Pro"></option>
+          <option value="Samsung Galaxy Watch 7"></option>
+        </datalist>
+        <div class="device-chips" aria-label="Quick-fill device names">
+          <button type="button" class="chip" data-device="iPhone 16 Pro">iPhone 16 Pro</button>
+          <button type="button" class="chip" data-device="iPhone 15">iPhone 15</button>
+          <button type="button" class="chip" data-device="AirPods Pro 2">AirPods Pro 2</button>
+          <button type="button" class="chip" data-device="Apple Watch Series 10">Watch S10</button>
+          <button type="button" class="chip" data-device="iPad Pro M4">iPad Pro M4</button>
+          <button type="button" class="chip" data-device="Samsung Galaxy S24 Ultra">S24 Ultra</button>
+          <button type="button" class="chip" data-device="Samsung Galaxy S24">Galaxy S24</button>
+          <button type="button" class="chip" data-device="Samsung Galaxy Z Fold 6">Z Fold 6</button>
+          <button type="button" class="chip" data-device="Samsung Galaxy Buds3 Pro">Buds3 Pro</button>
+          <button type="button" class="chip" data-device="Samsung Galaxy Tab S9">Tab S9</button>
+        </div>
+        <p id="productNameHint" class="field-hint">
+          Suggestions help spelling. Leave blank to use “Electronic device”. Run Flask at
+          <strong>http://127.0.0.1:5000</strong> (<code>python app.py</code>).
+        </p>
+        <p id="productNameError" class="field-error hidden" role="alert"></p>
+      </div>
+
+      <section class="card grid">
+        <div class="camera-wrap">
+          <video id="video" autoplay playsinline></video>
+          <canvas id="canvas" hidden></canvas>
+          <img id="snapshot" alt="Captured product" hidden />
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="btn btn-primary">Start Camera</button>
+          <button id="captureBtn" class="btn" disabled>Capture</button>
+          <button id="predictBtn" class="btn" disabled>Analyze</button>
+          <button id="recaptureBtn" class="btn" disabled>Recapture</button>
+
+          <div class="result" id="resultBox">
+            <p class="label">Prediction</p>
+            <p id="predictionText">Waiting for image...</p>
+            <p id="confidenceText" class="subtle"></p>
+            <div id="resultWebSearch" class="result-web-search hidden" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insightPanel" class="card insight hidden" aria-live="polite">
+        <div class="insight-head">
+          <h2>Product insight</h2>
+          <p id="insightSubtitle" class="subtle"></p>
+        </div>
+        <div class="insight-body">
+          <div id="webSearchBlock" class="web-search-block hidden">
+            <h3>Web reference links</h3>
+            <p id="webSearchQuery" class="subtle web-search-query"></p>
+            <ul id="webSearchList" class="web-search-list"></ul>
+          </div>
+          <div id="wikiBlock" class="wiki-block hidden">
+            <img id="wikiThumb" class="wiki-thumb" alt="" hidden />
+            <div class="wiki-text">
+              <h3 id="wikiTitle"></h3>
+              <p id="wikiExtract" class="wiki-extract"></p>
+              <a id="wikiLink" class="wiki-link" href="#" target="_blank" rel="noopener noreferrer"
+                >Read more on Wikipedia</a
+              >
+            </div>
+          </div>
+          <div id="refBlock" class="ref-block">
+            <h3 id="refBlockTitle">Reference images &amp; match</h3>
+            <p id="refNote" class="subtle ref-note"></p>
+            <div id="refGrid" class="ref-grid"></div>
+            <p id="refBest" class="ref-best"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

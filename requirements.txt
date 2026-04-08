@@ -1,0 +1,10 @@
+Flask==2.3.3
+Flask-CORS==4.0.0
+Pillow==10.0.0
+numpy==1.26.4
+python-dotenv==1.0.0
+requests==2.31.0
+scipy==1.11.2
+Werkzeug==2.3.7
+ImageHash==4.3.1
+duckduckgo-search==6.1.5
