@@ -186,18 +186,6 @@ Start Camera → Camera Stream Ready
   - Returns mock search results (expandable to real APIs)
 
 ---
-
-## 📦 Supported Brands
-
-Currently configured brands in database:
-- **Nike**: Price range $80-300, keywords: swoosh, check, jordan
-- **Apple**: Price range $800-1300, keywords: iphone, ios
-- **Samsung**: Price range $700-1200, keywords: galaxy, android
-- **Gucci**: Price range $500-5000, keywords: gg, logo
-- **Louis Vuitton**: Price range $1000-10000, keywords: lv, monogram
-
----
-
 ## 🚀 Quick Start
 
 ### Prerequisites
